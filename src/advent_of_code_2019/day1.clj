@@ -7,9 +7,10 @@
 
 (defn reduce-to-fuel
   [m]
-  (let [b (mass-to-fuel m)]
-    (->> (iterate mass-to-fuel b)
-         (reduce (fn [s m] (if (zero? m) (reduced s) (+ s (mass-to-fuel m)))) b))))
+  (->> (iterate mass-to-fuel m)
+       (drop 1)
+       (take-while pos?)
+       (apply +)))
 
 (defn run
   [part2?]
