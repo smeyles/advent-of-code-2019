@@ -3,7 +3,7 @@
 
 (defn mass-to-fuel
   [m]
-  (max 0 (- (int (/ m 3)) 2)))
+  (max 0 (- (quot m 3) 2)))
 
 (defn reduce-to-fuel
   [m]
