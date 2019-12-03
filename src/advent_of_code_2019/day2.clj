@@ -29,7 +29,8 @@
 
 (defn search
   [t]
-  (->> (for [noun (range) verb (range 100)] (run noun verb))
-       (filter (fn [[x]] (= t x)))
-       (first)
-       (#(+ (* 100 (second %)) (nth % 2)))))
+  (->> (for [noun (range) verb (range 100)
+             :let [[r] (run noun verb)]
+             :when (= r t)]
+         (+ (* 100 noun) verb))
+       (first)))
