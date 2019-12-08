@@ -51,15 +51,8 @@
         min-pair (apply min-key m intersections)]
     (m min-pair)))
 
-(def r1 "R8,U5,L5,D3")
-(def r2 "U7,R6,D4,L4")
-
-(def s1 "R75,D30,R83,U83,L12,D49,R71,U7,L72")
-(def s2 "U62,R66,U55,R34,D71,R55,D58,R83")
-
 (defn run
   [part2?]
   (->> (load-data "day3.txt")
-       #_(map #(str/split % #",") [r1 r2])
        (map paths->points)
        ((partial minimize (if part2? min-sum-path-length manhattan-distance)))))
